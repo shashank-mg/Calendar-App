@@ -1,0 +1,67 @@
+body {
+  margin: 0 0;
+  font-family: "Nunito SemiBold";
+}
+
+.container {
+  margin: 50px auto;
+  width: 50%;
+  height: 500px;
+  background-color: #555;
+  position: relative;
+  min-width: 500px;
+}
+
+.holder {
+  display: inline-block;
+  margin: 10px auto;
+  width: 80%;
+  height: 480px;
+  background-color: white;
+  position: absolute;
+  left: 10%;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 50px);
+  grid-gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.left-arrow:hover {
+  cursor: pointer;
+}
+.right-arrow:hover {
+  cursor: pointer;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 30px;
+  grid-gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.dates {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 40px);
+  grid-gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin: 0px auto;
+}
+
+.dates > div {
+  height: 100%;
+  padding-top: 15px;
+  border-radius: 50%;
+}
