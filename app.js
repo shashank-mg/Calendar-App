@@ -6,7 +6,6 @@ class Calendar {
   }
 
   startCalculate() {
-    // console.log(this.start);
     if (this.start < 34) this.start -= 27;
     else if (this.start >= 34) this.start -= 34;
   }
@@ -31,9 +30,7 @@ class Calendar {
     }
   };
 
-  days = (dy) => {
-    // console.group(all_days[dy]);
-  };
+  days = (dy) => {};
 
   months = (m) => {
     if (m > 11) {
@@ -92,7 +89,6 @@ class Calendar {
       for (let i = j; i <= months[m][1]; i++) {
         all_dates[begin++].textContent = i;
       }
-      console.log(this.starting);
       this.start = begin - 1;
     } else {
       this.clear(m);
@@ -100,19 +96,38 @@ class Calendar {
       if (this.datesChange) {
         this.startCalculate();
         this.starting = this.start;
-        console.log(this.starting);
+
         for (let j = 1; j <= months[this.monthRecord][1]; j++) {
           all_dates[this.start++].textContent = j;
         }
         this.start--;
       } else {
         this.clear(m);
-        console.log(this.starting, months[this.monthRecord]);
-        let endAt = this.starting - 1 + months[this.monthRecord][1] + 4;
-        console.log(endAt);
-        for (let i = months[this.monthRecord][1]; i >= 1; i--) {
-          all_dates[endAt--].textContent = i;
+        let lastDayOfPrevMonth = this.starting;
+        if (lastDayOfPrevMonth == 0) lastDayOfPrevMonth = 7;
+
+        let k = months[this.monthRecord][1];
+        while (k > 7) k -= 7;
+        let f_day = new Map();
+        f_day.set(k, all_days[lastDayOfPrevMonth - 1]);
+
+        let currentday = all_days.indexOf(all_days[lastDayOfPrevMonth - 1]);
+
+        for (let i = k; i >= 1; i--) {
+          if (currentday >= 0) {
+            f_day.set(i, all_days[currentday--]);
+          } else {
+            currentday = 6;
+            f_day.set(i, all_days[currentday--]);
+          }
         }
+        let starter = f_day.get(1);
+        let begin = all_days.indexOf(starter);
+        this.starting = begin;
+        for (var j = 1; j <= months[this.monthRecord][1]; j++) {
+          all_dates[begin++].textContent = j;
+        }
+        this.start = begin - 1;
       }
     }
   };
