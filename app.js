@@ -1,13 +1,10 @@
 class Calendar {
   constructor() {
     this.flag = 0;
-    this.monthRecord = 0;
-    this.yearRecord = 0;
   }
 
   startCalculate() {
-    if (this.start < 34) this.start -= 27;
-    else if (this.start >= 34) this.start -= 34;
+    this.start = this.start >= 34 ? (this.start -= 34) : (this.start -= 27);
   }
 
   caller() {
@@ -96,7 +93,6 @@ class Calendar {
       if (this.datesChange) {
         this.startCalculate();
         this.starting = this.start;
-
         for (let j = 1; j <= months[this.monthRecord][1]; j++) {
           all_dates[this.start++].textContent = j;
         }
@@ -104,25 +100,15 @@ class Calendar {
       } else {
         this.clear(m);
         let lastDayOfPrevMonth = this.starting;
-        if (lastDayOfPrevMonth == 0) lastDayOfPrevMonth = 7;
-
-        let k = months[this.monthRecord][1];
-        while (k > 7) k -= 7;
-        let f_day = new Map();
-        f_day.set(k, all_days[lastDayOfPrevMonth - 1]);
-
-        let currentday = all_days.indexOf(all_days[lastDayOfPrevMonth - 1]);
-
-        for (let i = k; i >= 1; i--) {
-          if (currentday >= 0) {
-            f_day.set(i, all_days[currentday--]);
-          } else {
-            currentday = 6;
-            f_day.set(i, all_days[currentday--]);
-          }
+        if (lastDayOfPrevMonth == 0) {
+          lastDayOfPrevMonth = 7;
         }
-        let starter = f_day.get(1);
-        let begin = all_days.indexOf(starter);
+        let k = months[this.monthRecord][1];
+        while (k > 7) {
+          k -= 7;
+        }
+        let lastDay = all_days[lastDayOfPrevMonth - 1];
+        let begin = this.firstOfMonth(all_days.indexOf(lastDay), k);
         this.starting = begin;
         for (var j = 1; j <= months[this.monthRecord][1]; j++) {
           all_dates[begin++].textContent = j;
@@ -154,5 +140,3 @@ class Calendar {
 
 let calendar = new Calendar();
 calendar.keepRunning();
-
-let dater = new Date();
