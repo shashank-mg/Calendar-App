@@ -31,3 +31,8 @@ let all_days = [
 
 right_arrow.addEventListener("click", () => calendar.forward());
 left_arrow.addEventListener("click", () => calendar.backward());
+
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode === 39) calendar.forward();
+  else if (e.keyCode === 37) calendar.backward();
+});

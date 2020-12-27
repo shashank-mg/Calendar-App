@@ -1,6 +1,12 @@
 body {
   margin: 0 0;
   font-family: "Nunito SemiBold";
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
 .container {
