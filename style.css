@@ -1,6 +1,8 @@
 body {
   margin: 0 0;
   font-family: "Nunito SemiBold";
+  background: url("wall.jpg") repeat;
+  background-size: cover;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
